@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+/client/node_modules/
+/functions/node_modules/
+
+# Build outputs
+/client/dist/
+/client/build/
+
+# Local Environment Variables (CRITICAL: API Keys, Secrets)
+.env
+.env.local
+.env.*
+/functions/.env
+/functions/.env.local
+/functions/.env.*
+
+# Firebase cache and logs
+.firebase/
+*-debug.log
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# IDEs & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
