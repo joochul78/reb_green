@@ -1,7 +1,7 @@
 const { onObjectFinalized } = require("firebase-functions/v2/storage");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { getStorage } = require("firebase-admin/storage");
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const admin = require("firebase-admin");
 const fs = require("fs");
 const path = require("path");
@@ -149,7 +149,7 @@ exports.processPdfOnUpload = onObjectFinalized({
           docId: chunk.docId,
           docName: chunk.docName,
           embedding: chunk.embedding,
-          createdAt: admin.firestore.FieldValue.serverTimestamp()
+          createdAt: FieldValue.serverTimestamp()
         });
       });
       await dbBatch.commit();
@@ -159,7 +159,7 @@ exports.processPdfOnUpload = onObjectFinalized({
     await docRef.update({
       status: "ready",
       chunksCount: chunks.length,
-      processedAt: admin.firestore.FieldValue.serverTimestamp()
+      processedAt: FieldValue.serverTimestamp()
     });
 
     console.log(`Successfully processed document ${docId}.`);
@@ -168,7 +168,7 @@ exports.processPdfOnUpload = onObjectFinalized({
     await docRef.update({
       status: "error",
       errorMessage: err.message,
-      processedAt: admin.firestore.FieldValue.serverTimestamp()
+      processedAt: FieldValue.serverTimestamp()
     });
   }
 
@@ -272,17 +272,17 @@ exports.chatWithPdf = onCall({
       batch.set(userMsgRef, {
         role: "user",
         content: message,
-        timestamp: admin.firestore.FieldValue.serverTimestamp()
+        timestamp: FieldValue.serverTimestamp()
       });
       const modelMsgRef = sessionRef.collection("messages").doc();
       batch.set(modelMsgRef, {
         role: "model",
         content: answer,
         citations: [],
-        timestamp: admin.firestore.FieldValue.serverTimestamp()
+        timestamp: FieldValue.serverTimestamp()
       });
       batch.update(sessionRef, {
-        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+        updatedAt: FieldValue.serverTimestamp()
       });
       await batch.commit();
 
@@ -381,7 +381,7 @@ ${contextText}
     batch.set(userMsgRef, {
       role: "user",
       content: message,
-      timestamp: admin.firestore.FieldValue.serverTimestamp()
+      timestamp: FieldValue.serverTimestamp()
     });
 
     const modelMsgRef = sessionRef.collection("messages").doc();
@@ -389,11 +389,11 @@ ${contextText}
       role: "model",
       content: answer,
       citations: citations,
-      timestamp: admin.firestore.FieldValue.serverTimestamp()
+      timestamp: FieldValue.serverTimestamp()
     });
 
     batch.update(sessionRef, {
-      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      updatedAt: FieldValue.serverTimestamp()
     });
 
     await batch.commit();
