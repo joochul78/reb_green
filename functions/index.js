@@ -91,7 +91,7 @@ exports.processPdfOnUpload = onObjectFinalized({
       throw new Error("GEMINI_API_KEY environment variable is not set.");
     }
     const genAI = new GoogleGenerativeAI(apiKey);
-    const embedModel = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const embedModel = genAI.getGenerativeModel({ model: "gemini-embedding-2" });
 
     const chunks = [];
     const maxChunkSize = 800;
@@ -207,7 +207,7 @@ exports.chatWithPdf = onCall({
     const genAI = new GoogleGenerativeAI(apiKey);
 
     // 1. Generate query embedding
-    const embedModel = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const embedModel = genAI.getGenerativeModel({ model: "gemini-embedding-2" });
     const queryEmbedResult = await embedModel.embedContent(message);
     const queryEmbedding = queryEmbedResult.embedding.values;
 
