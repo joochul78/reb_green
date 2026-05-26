@@ -1,0 +1,10 @@
+{
+  "name": "reb-green-rag-project",
+  "version": "1.0.0",
+  "description": "PDF RAG Agent Chatbot Project",
+  "scripts": {
+    "dev": "npx concurrently --kill-others --names \"BACKEND,FRONTEND\" --prefix-colors \"magenta,cyan\" \"firebase emulators:start\" \"npm --prefix client run dev\"",
+    "start": "npm run dev"
+  },
+  "private": true
+}
