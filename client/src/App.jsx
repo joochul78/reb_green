@@ -186,7 +186,7 @@ export default function App() {
     }
 
     // 2. Upload the file to Firebase Storage under the generated path
-    const storagePath = `users/${user.uid}/documents/${docRef.id}/${encodeURIComponent(file.name)}`;
+    const storagePath = `users/${user.uid}/documents/${docRef.id}/${file.name}`;
     const storageRef = ref(storage, storagePath);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
