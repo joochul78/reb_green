@@ -8,9 +8,9 @@ import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 // In production, these should be replaced with actual Firebase Config values.
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "mock-api-key",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "reb-green-rag.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "reb-green-rag",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "reb-green-rag.appspot.com",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "demo-reb-green-rag.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "demo-reb-green-rag",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "demo-reb-green-rag.appspot.com",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1234567890",
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1234567890:web:1234567890"
 };
